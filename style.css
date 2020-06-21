@@ -1,0 +1,71 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    width: 70vw;
+    margin: auto;
+ }
+
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    background-color: rgb(166, 201, 255);
+}
+
+.nav > * {
+ margin: 5px;   
+}
+
+.nav > h1 {
+    font-size: medium;
+}
+
+.egg-name {
+    display: flex;
+    text-align: left;
+}
+
+.egg-name > a {
+    top: 0px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.egg {
+    display: flex;
+}
+
+.pet {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    text-align: center;
+}
+
+
+.content-viewer {
+    display: flex;
+    height: 100vw;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 100%;
+}
+
+.links > .pet-link {
+    cursor: pointer;
+    padding: 3px;
+}
+
+
+#pet-card {
+    width: 100%;
+    height: 100%;
+}
+

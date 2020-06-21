@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>Aussie Pets</title>
+        <link rel="stylesheet" type="text/css" href="/style.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="nav">
+            <a href="/">Home</a>
+            <h1>Aussie Pets</h1>
+        </div>
+        <div class="content-viewer">
+            <div id="pet-card"></div>
+            <div class="links">
+                <a class="pet-link" href="#" name="bandicoot">Bandicoot</a>
+                <a class="pet-link" href="#" name="dingo">Dingo</a>
+            </div>
+        </div>
+        <script>
+
+            document.addEventListener("DOMContentLoaded", () => {
+                document.querySelectorAll(".links > a.pet-link").forEach(link => {
+                    link.addEventListener("click", (event) => {
+                        document.querySelectorAll(".links > a.pet-link").forEach(link => {
+                            link.style.backgroundColor = "transparent";
+                            link.style.fontWeight = "normal";
+                        });
+                        event.target.style.backgroundColor = "#efe";
+                        event.target.style.fontWeight = "bold";
+
+                        $.ajax({
+                            type: "GET",
+                            url: `/aussie/${event.target.attributes.getNamedItem("name").value}.html`,
+                            dataType: "html"
+                        }).done(function (response) {
+                            $("#pet-card").html($(response).filter('#pet-card').get(0).innerHTML)
+                        }).fail(function (jqXHR, textStatus, errorThrown) {
+                            alert("AJAX call failed: " + textStatus + ", " + errorThrown);
+                        });
+
+                    });
+                });
+                
+                if(sessionStorage.getItem('pet') != null) {
+                    document.querySelector(`a[name="${sessionStorage.getItem('pet')}"]`).click();
+                    
+                    // this probably not needed
+                    // sessionStorage.removeItem('pet');
+                }
+            });
+        </script>
+    </body>
+</html>
